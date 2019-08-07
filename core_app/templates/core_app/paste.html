@@ -1,0 +1,13 @@
+{% extends "core_app/base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+Паста <b>{{ paste.hash }}</b>:<br/>
+{{ paste.text|linebreaks }}<br/>
+Прямая ссылка на пасту: <a href="{% url 'core_app:paste' hash=paste.hash %}">{{ request.scheme  }}://{{ request.META.HTTP_HOST }}{% url 'core_app:paste' hash=paste.hash %}</a>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "core_app/base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+
+<form action="{% url 'core_app:add_paste' %}" method="post" -novalidate>
+    {% csrf_token %}
+
+    {{ paste_form.text.errors }}
+    {{ paste_form.text.label_tag }}
+    {{ paste_form.text }}<br />
+
+    {{ paste_form.access_period.errors }}
+    {{ paste_form.access_period.label_tag }}
+    {{ paste_form.access_period }}<br />
+
+    {{ paste_form.access_only_from_link.label_tag }}
+    {{ paste_form.access_only_from_link }}<br />
+    <input type="submit" value="Добавить">
+</form>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}
