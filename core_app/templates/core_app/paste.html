@@ -1,13 +1,16 @@
 {% extends "core_app/base.html" %}
 
 {% block css %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/default.min.css">
 {% endblock %}
 
 {% block content %}
-Паста <b>{{ paste.hash }}</b>:<br/>
-{{ paste.text|linebreaks }}<br/>
+Паста <b>{{ paste.hash }}</b>{% if paste.code_language %} ({{ paste.code_language }}){% endif %}:<br/>
+<pre><code class="{{ paste.code_language }}">{{ paste.text|escape  }}</code></pre>
 Прямая ссылка на пасту: <a href="{% url 'core_app:paste' hash=paste.hash %}">{{ request.scheme  }}://{{ request.META.HTTP_HOST }}{% url 'core_app:paste' hash=paste.hash %}</a>
 {% endblock %}
 
 {% block js %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}

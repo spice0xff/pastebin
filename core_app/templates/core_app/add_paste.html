@@ -8,6 +8,10 @@
 <form action="{% url 'core_app:add_paste' %}" method="post" -novalidate>
     {% csrf_token %}
 
+    {{ paste_form.code_language.errors }}
+    {{ paste_form.code_language.label_tag }}
+    {{ paste_form.code_language }}<br />
+
     {{ paste_form.text.errors }}
     {{ paste_form.text.label_tag }}
     {{ paste_form.text }}<br />
@@ -18,6 +22,12 @@
 
     {{ paste_form.access_only_from_link.label_tag }}
     {{ paste_form.access_only_from_link }}<br />
+
+    {% if request.user.is_authenticated %}
+        {{ paste_form.private.label_tag }}
+        {{ paste_form.private }}<br />
+    {% endif %}
+
     <input type="submit" value="Добавить">
 </form>
 

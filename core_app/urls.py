@@ -8,6 +8,13 @@ urlpatterns = [
     path('add_paste', views.add_paste, name='add_paste'),
     path('paste/<str:hash>', views.paste, name='paste'),
     path('oops', views.oops, name='oops'),
+
+    path('registration', views.registration, name='registration'),
+    path('login', views.login, name='login'),
+    path('logout', views.logout, name='logout'),
+    path('my_paste_list', views.my_paste_list, name='my_paste_list'),
+    path('access_denied', views.access_denied, name='access_denied'),
+    path('find', views.find, name='find'),
 ]
 
 # # Для раздачи статики в режиме разработки.

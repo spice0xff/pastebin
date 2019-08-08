@@ -1,0 +1,19 @@
+{% extends "core_app/base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+    Результат поиска для {{ find_text }}:<br/>
+    {% for paste in find_paste_list %}
+        {% if not find.exclude %}
+            <a href="{% url 'core_app:paste' hash=paste.hash %}" >{{ paste }}</a>
+            <br/>
+        {% endif %}
+    {% empty %}
+        Поиск не дал результатов
+    {% endfor %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}

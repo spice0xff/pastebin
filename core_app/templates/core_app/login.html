@@ -1,0 +1,28 @@
+{% extends "core_app/base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+<h1>Вход</h1>
+<form action="{% url 'core_app:login' %}" method="post" -novalidate>
+    {% csrf_token %}
+
+    {{ login_form.username.errors }}
+    {{ login_form.username }}
+
+    {{ login_form.password.errors }}
+    {{ login_form.password }}
+
+    <br />
+    {{ login_form.non_field_errors }}
+    {{ message }}
+
+    <input type="submit" value="Вход">
+</form>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+

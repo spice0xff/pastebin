@@ -13,11 +13,26 @@
 {#        <link rel="stylesheet" type="text/css" href="/static/core_app/css/normalize.css"/>#}
 {#        <link rel="stylesheet" type="text/css" href="/static/core_app/css/main.css"/>#}
 {#        <link rel="stylesheet" type="text/css" href="/static/core_app/css/bootstrap.min.css"/>#}
+    {% block css %}{% endblock %}
 </head>
 
 <body>
 <div id="block_top">
-    <a href="{% url 'core_app:home' %}" >На главную</a>
+    <a href="{% url 'core_app:home' %}">На главную</a> |
+
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'core_app:my_paste_list' %}">Список всех паст для {{ request.user.username }}</a> |
+        <a href="{% url 'core_app:logout' %}">Выход</a>
+    {% else %}
+        <a href="{% url 'core_app:registration' %}">Регистрация</a> |
+        <a href="{% url 'core_app:login' %}">Вход</a>
+    {% endif %}
+
+    <form action="{% url 'core_app:find' %}" method="get" -novalidate>
+        {{ find_form.text }}
+        <input type="submit" value="Найти">
+    </form>
+
     <br/>
     <br/>
 </div>
@@ -29,6 +44,18 @@
 </div>
 
 <div id="block_paste_list">
+    {% if request.user.is_authenticated %}
+        <br/>
+        Список последних паст {{ request.user.username }}:<br/>
+        {% for paste in owner_paste_list %}
+            <a href="{% url 'core_app:paste' hash=paste.hash %}" >{{ paste }}</a>
+            <br/>
+        {% empty %}
+            В настоящий момент список пуст
+            <br/>
+        {% endfor %}
+    {% endif %}
+
     <br/>
     Список последних паст:<br/>
     {% for paste in paste_list %}
@@ -36,6 +63,7 @@
         <br/>
     {% empty %}
         В настоящий момент список пуст
+        <br/>
     {% endfor %}
 </div>
 

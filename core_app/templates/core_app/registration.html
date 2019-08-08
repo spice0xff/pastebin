@@ -1,0 +1,28 @@
+{% extends "core_app/base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+<h1>Регистрация</h1>
+<form action="{% url 'core_app:registration' %}" method="post" -novalidate>
+    {% csrf_token %}
+
+    {{ registration_form.username.errors }}
+    {{ registration_form.username }}
+
+    {{ registration_form.password.errors }}
+    {{ registration_form.password }}
+
+    <br />
+    {{ registration_form.non_field_errors }}
+    {{ message }}
+
+    <input type="submit" value="Регистрация">
+</form>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+

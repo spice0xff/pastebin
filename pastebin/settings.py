@@ -25,7 +25,11 @@ SECRET_KEY = '0us5)_mqf&1n)_2zzea4&kuoyvy@6bt65sh58w6bb365z*%8@j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    '0.0.0.0',
+    'testserver'
+]
 
 
 # Application definition
@@ -123,3 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = '2smLuYCOnw59h5PxuOc8'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = '00df16a000df16a000df16a0da00b333b2000df00df16a05d95cc812ab1587ec7d5acbb'

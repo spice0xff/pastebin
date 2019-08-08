@@ -1,0 +1,36 @@
+{% extends "core_app/base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+    Список всех паст для {{ request.user.username }}:<br/>
+    {% for paste in my_paste_list_paginator %}
+        <a href="{% url 'core_app:paste' hash=paste.hash %}" >{{ paste }}</a>
+        <br/>
+    {% empty %}
+        В настоящий момент список пуст
+        <br/>
+    {% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if my_paste_list_paginator.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ my_paste_list_paginator.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ my_paste_list_paginator.number }}/{{ my_paste_list_paginator.paginator.num_pages }}
+            </span>
+
+            {% if my_paste_list_paginator.has_next %}
+                <a href="?page={{ my_paste_list_paginator.next_page_number }}">next</a>
+                <a href="?page={{ my_paste_list_paginator.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
