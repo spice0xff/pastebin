@@ -1,0 +1,7 @@
+﻿# Запуск контейнера с тестовым web-сервером django.
+docker run -d -p 8555:8555 spice0xff/pastebin python ~/pastebin/manage.py runserver 0.0.0.0:8555
+# Проверка.
+curl 127.0.0.1:8555
+
+# Прогонка юнит-тестов.
+docker run -it spice0xff/pastebin python ~/pastebin/manage.py test core_app
